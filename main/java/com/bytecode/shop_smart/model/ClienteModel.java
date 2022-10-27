@@ -12,6 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -51,17 +54,15 @@ public class ClienteModel implements Serializable{
     @Column(name = "clave")
     private String clave;
     
-    @Column(name = "tipo_usuario")
-    private String tipoUsuario;
+    @ManyToOne
+    @JoinColumn(name = "tipo_usuario")/// estandalizar esta a Tabla.
+    private TipoUsuarioModel tipoUsuarioModel;
     
     @Column(name = "precio_usuario")
     private String precioUsuario;
     
     @Column(name = "responsable")
     private String responsable;
-//    @JoinColumn(name = "cliente_id")
-//    @OneToMany
-//    private ClienteModel ClienteModel;
     
     @Column(name = "estado")
     private boolean estado;
@@ -74,8 +75,8 @@ public class ClienteModel implements Serializable{
     
     
     
-    // Todos los Get y Set \/
-   
+    // Todos los Get y Set \|/
+
     public long getClienteId() {
         return clienteId;
     }
@@ -148,14 +149,14 @@ public class ClienteModel implements Serializable{
         this.clave = clave;
     }
 
-    public String getTipoUsuario() {
-        return tipoUsuario;
+    public TipoUsuarioModel getTipoUsuarioModel() {
+        return tipoUsuarioModel;
     }
 
-    public void setTipoUsuario(String tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+    public void setTipoUsuarioModel(TipoUsuarioModel tipoUsuarioModel) {
+        this.tipoUsuarioModel = tipoUsuarioModel;
     }
-
+    
     public String getPrecioUsuario() {
         return precioUsuario;
     }
@@ -187,12 +188,6 @@ public class ClienteModel implements Serializable{
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
-
-    
-    
+   
+        
 }
-
-
-
-

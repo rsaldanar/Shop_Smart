@@ -5,20 +5,80 @@
  */
 package com.bytecode.shop_smart.model;
 
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 /**
  *
  * @author rsaldana
  */
-public class OrdenCompraModelo {
-    int ordenId,numeroOrden, suplidorId, articuloId, almacenId, suplidorDiaCredito;
-    double cantidad, precio, monto, total;
-    String procesoActual, responsable;
+@Entity
+@Table(name = "orden_compra")
+public class OrdenCompraModelo implements Serializable {
 
-    public int getOrdenId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @Column(name = "orden_compra_id", unique = true, nullable = false )
+    private long ordenId;
+
+    @Column(name = "numero")
+    private int numeroOrden;
+
+    @ManyToOne
+    @JoinColumn(name = "suplidor_id_suplidor")
+    private SuplidorModelo suplidorModelo;
+
+    @ManyToOne
+    @JoinColumn(name = "articulo_id_articulo")
+    private ArticuloModelo articuloModelo;
+
+    @Column(name = "cantidad")
+    private double cantidad;
+
+    @Column(name = "precio")
+    private double precio;
+
+    @Column(name = "monto")
+    private double monto;
+
+    @ManyToOne
+    @JoinColumn(name = "almacen_id_almacen")
+    private AlmacenModelo almacenModelo;
+
+    @Column(name = "total")
+    private double total;
+
+    @Column(name = "proceso_actual")
+    private String procesoActual;
+
+    @Column(name = "responsable")
+    private String responsable;
+
+    @Column(name = "estado")
+    private boolean estado;
+
+    @Column(name = "fecha")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
+
+    
+    
+    
+    public long getOrdenId() {
         return ordenId;
     }
 
-    public void setOrdenId(int ordenId) {
+    public void setOrdenId(long ordenId) {
         this.ordenId = ordenId;
     }
 
@@ -30,36 +90,20 @@ public class OrdenCompraModelo {
         this.numeroOrden = numeroOrden;
     }
 
-    public int getSuplidorId() {
-        return suplidorId;
+    public SuplidorModelo getSuplidorModelo() {
+        return suplidorModelo;
     }
 
-    public void setSuplidorId(int suplidorId) {
-        this.suplidorId = suplidorId;
+    public void setSuplidorModelo(SuplidorModelo suplidorModelo) {
+        this.suplidorModelo = suplidorModelo;
     }
 
-    public int getArticuloId() {
-        return articuloId;
+    public ArticuloModelo getArticuloModelo() {
+        return articuloModelo;
     }
 
-    public void setArticuloId(int articuloId) {
-        this.articuloId = articuloId;
-    }
-
-    public int getAlmacenId() {
-        return almacenId;
-    }
-
-    public void setAlmacenId(int almacenId) {
-        this.almacenId = almacenId;
-    }
-
-    public int getSuplidorDiaCredito() {
-        return suplidorDiaCredito;
-    }
-
-    public void setSuplidorDiaCredito(int suplidorDiaCredito) {
-        this.suplidorDiaCredito = suplidorDiaCredito;
+    public void setArticuloModelo(ArticuloModelo articuloModelo) {
+        this.articuloModelo = articuloModelo;
     }
 
     public double getCantidad() {
@@ -86,6 +130,14 @@ public class OrdenCompraModelo {
         this.monto = monto;
     }
 
+    public AlmacenModelo getAlmacenModelo() {
+        return almacenModelo;
+    }
+
+    public void setAlmacenModelo(AlmacenModelo almacenModelo) {
+        this.almacenModelo = almacenModelo;
+    }
+
     public double getTotal() {
         return total;
     }
@@ -109,6 +161,23 @@ public class OrdenCompraModelo {
     public void setResponsable(String responsable) {
         this.responsable = responsable;
     }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
     
-   
+    
 }

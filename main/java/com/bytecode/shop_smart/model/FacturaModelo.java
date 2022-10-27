@@ -5,55 +5,107 @@
  */
 package com.bytecode.shop_smart.model;
 
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.*;
+
 /**
  *
  * @author rsaldana
  */
-public class FacturaModelo {
+@Entity
+@Table(name = "factura")
+public class FacturaModelo implements Serializable {
 
-    int facturaId, factura_numero, clienteId, articuloId, movimientoId;
-    double articuloCantidad, articuloPrecio, efectivo, cambio, cantidadArticulo;
-    String responsable;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "factura_id", unique = true, nullable = false)
+    private long facturaId;
 
-    public int getFacturaId() {
+    @Column(name = "factura_numero")
+    private Integer facturaNumero;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id_cliente")
+    private ClienteModel clienteModel;
+
+    @ManyToOne
+    @JoinColumn(name = "articulo_id_articulo")
+    private ArticuloModelo articuloModelo;
+    
+//    @ManyToOne
+//    @JoinColumn(name = "movimiento_id_movimiento")
+//    private MovimientoModelo movimientoModelo;
+
+    @Column(name = "articulo_cantidad")
+    private double articuloCantidad;
+
+    @Column(name = "articulo_precio")
+    private double articuloPrecio;
+
+    @Column(name = "efectivo")
+    private double efectivo;
+
+    @Column(name = "cambio")
+    private double cambio;
+
+//    @Column(name = "cantidadArticulo")
+//    private int cantidadArticulo;
+
+    @Column(name = "responsable")
+    private String responsable;
+
+    @Column(name = "fecha")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
+
+    @Column(name = "estado")
+    private boolean estado;
+
+    
+    
+    
+    
+    
+    public long getFacturaId() {
         return facturaId;
     }
 
-    public void setFacturaId(int facturaId) {
+    public void setFacturaId(long facturaId) {
         this.facturaId = facturaId;
     }
 
-    public int getFactura_numero() {
-        return factura_numero;
+    public Integer getFacturaNumero() {
+        return facturaNumero;
     }
 
-    public void setFactura_numero(int factura_numero) {
-        this.factura_numero = factura_numero;
+    public void setFacturaNumero(Integer facturaNumero) {
+        this.facturaNumero = facturaNumero;
     }
 
-    public int getClienteId() {
-        return clienteId;
+    public ClienteModel getClienteModel() {
+        return clienteModel;
     }
 
-    public void setClienteId(int clienteId) {
-        this.clienteId = clienteId;
+    public void setClienteModel(ClienteModel clienteModel) {
+        this.clienteModel = clienteModel;
     }
 
-    public int getArticuloId() {
-        return articuloId;
+    public ArticuloModelo getArticuloModelo() {
+        return articuloModelo;
     }
 
-    public void setArticuloId(int articuloId) {
-        this.articuloId = articuloId;
+    public void setArticuloModelo(ArticuloModelo articuloModelo) {
+        this.articuloModelo = articuloModelo;
     }
 
-    public int getMovimientoId() {
-        return movimientoId;
-    }
-
-    public void setMovimientoId(int movimientoId) {
-        this.movimientoId = movimientoId;
-    }
+//    public MovimientoModelo getMovimientoModelo() {
+//        return movimientoModelo;
+//    }
+//
+//    public void setMovimientoModelo(MovimientoModelo movimientoModelo) {
+//        this.movimientoModelo = movimientoModelo;
+//    }
 
     public double getArticuloCantidad() {
         return articuloCantidad;
@@ -79,21 +131,21 @@ public class FacturaModelo {
         this.efectivo = efectivo;
     }
 
-    public double getCambio() {
+    public double getPriva() {
         return cambio;
     }
 
-    public void setCambio(double cambio) {
-        this.cambio = cambio;
+    public void setPriva(double priva) {
+        this.cambio = priva;
     }
 
-    public double getCantidadArticulo() {
-        return cantidadArticulo;
-    }
-
-    public void setCantidadArticulo(double cantidadArticulo) {
-        this.cantidadArticulo = cantidadArticulo;
-    }
+//    public int getCantidadArticulo() {
+//        return cantidadArticulo;
+//    }
+//
+//    public void setCantidadArticulo(int cantidadArticulo) {
+//        this.cantidadArticulo = cantidadArticulo;
+//    }
 
     public String getResponsable() {
         return responsable;
@@ -103,4 +155,23 @@ public class FacturaModelo {
         this.responsable = responsable;
     }
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    
+    
+    
+    
 }

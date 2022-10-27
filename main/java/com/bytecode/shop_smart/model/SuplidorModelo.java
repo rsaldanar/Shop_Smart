@@ -5,20 +5,70 @@
  */
 package com.bytecode.shop_smart.model;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author rsaldana
  */
-public class SuplidorModelo {
-    int suplidorId, diaCredito, ordenNumero; 
-    String nombre, direccion, telefono, vendedor, telefonoVendedor, correo, responsable;
+@Entity
+@Table(name = "suplidor")
+public class SuplidorModelo implements Serializable {
 
-    public int getSuplidorId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @Column(name = "suplidor_id", unique = true, nullable = false)
+    private long suplidorId;
+    
+    @Column(name = "dia_credito")
+    private int diaCredito;//
+    
+    @Column(name = "nombre")
+    private String nombre;
+    
+    @Column(name = "direccion")
+    private String direccion;
+    
+    @Column(name = "telefono")
+    private String telefono;
+    
+    @Column(name = "vendedor")
+    private String vendedor;
+    
+    @Column(name = "telefono_vendedor")
+    private String telefonoVendedor;
+    
+    @Column(name = "correo")
+    private String correo;
+
+    @Column(name = "estado")
+    private boolean estado;
+    
+    @Column(name = "responsable")
+    private String responsable;
+
+    
+    
+    public long getSuplidorId() {
         return suplidorId;
     }
 
-    public void setSuplidorId(int suplidorId) {
+    public void setSuplidorId(long suplidorId) {
         this.suplidorId = suplidorId;
+    }
+
+    public int getDiaCredito() {
+        return diaCredito;
+    }
+
+    public void setDiaCredito(int diaCredito) {
+        this.diaCredito = diaCredito;
     }
 
     public String getNombre() {
@@ -69,13 +119,6 @@ public class SuplidorModelo {
         this.correo = correo;
     }
 
-    public int getDiaCredito() {
-        return diaCredito;
-    }
-
-    public void setDiaCredito(int diaCredito) {
-        this.diaCredito = diaCredito;
-    }
 
 
     public String getResponsable() {
@@ -85,6 +128,13 @@ public class SuplidorModelo {
     public void setResponsable(String responsable) {
         this.responsable = responsable;
     }
-    
-    
+
+
+    public boolean getEstado() {
+        return this.estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
 }

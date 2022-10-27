@@ -5,7 +5,7 @@
  */
 package com.bytecode.shop_smart.repository;
 
-import com.bytecode.shop_smart.model.MedidaModel;
+import com.bytecode.shop_smart.model.RecepsionDineroModel;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -15,9 +15,9 @@ import org.springframework.stereotype.Repository;
  * @author rsaldana
  */
 @Repository
-public interface MedidaRepository extends CrudRepository<MedidaModel, Long>{
+public interface RecepsionDineroRepository extends CrudRepository<RecepsionDineroModel, Long>{
     
-    Optional<MedidaModel> findByPresentacion(String presentacion);
-    
-    Optional<MedidaModel> findByUnidad(String unidad);
+    public abstract Optional<RecepsionDineroModel> findByResponsable(String responsable);
+
+    public Optional<RecepsionDineroModel> findByResponsableAndFecha(String responsable, String fecha);
 }

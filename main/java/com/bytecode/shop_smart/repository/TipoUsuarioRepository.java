@@ -5,10 +5,7 @@
  */
 package com.bytecode.shop_smart.repository;
 
-
-import java.util.List;
-
-import com.bytecode.shop_smart.model.ClienteModel;
+import com.bytecode.shop_smart.model.TipoUsuarioModel;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -17,16 +14,9 @@ import org.springframework.stereotype.Repository;
  *
  * @author rsaldana
  */
-
 @Repository
-public interface ClienteRepository extends CrudRepository<ClienteModel, Long>{
+public interface TipoUsuarioRepository extends CrudRepository<TipoUsuarioModel, Long>{
     
-    public abstract Optional<ClienteModel> findByNombre(String nombre);
-    
-    public abstract Optional<ClienteModel> findByApellido(String apellido);
-    
-    public abstract Optional<ClienteModel> findByUsuarioAndClave(String usuario, String clave);
-    
+    public abstract Optional<TipoUsuarioModel> findByDescripcion(String descripcion);
     
 }
-

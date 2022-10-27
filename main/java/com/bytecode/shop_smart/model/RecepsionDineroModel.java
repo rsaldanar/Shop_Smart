@@ -5,34 +5,84 @@
  */
 package com.bytecode.shop_smart.model;
 
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 /**
  *
  * @author rafael
  */
-public class RecepsionModelo {
-    int recepcioncaja_id;
-    String responsable;
-    String fecha;
-    int dosMil;
-    int unMil;
-    int quiniento;
-    int dosCiento;
-    int cien;
-    int cincuenta;
-    int venteycinco;
-    int vente;
-    int diez;
-    int cinco;
-    int uno;
-    int total;
-    int cuadre_id_cuadre;
+@Entity
+@Table(name = "recepcion_dinero")
+public class RecepsionDineroModel implements Serializable {
 
-    public int getRecepcioncaja_id() {
-        return recepcioncaja_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "recepcion_id", unique = true, nullable = false)
+    private long recepcioncajaId;
+
+    @Column(name = "responsable")
+    String responsable;
+
+    @Column(name = "fecha")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha;
+    
+    @Column(name = "dos_mil")
+    private int dosMil;
+    
+    @Column(name = "un_mil")
+    private int unMil;
+    
+    @Column(name = "quiniento")
+    private int quiniento;
+    
+    @Column(name = "dos_ciento")
+    private int dosCiento;
+    
+    @Column(name = "cien")
+    private int cien;
+    
+    @Column(name = "cincuenta")
+    private int cincuenta;
+    
+    @Column(name = "vente_y_cinco")
+    private int venteycinco;
+    
+    @Column(name = "vente")
+    private int vente;
+    
+    @Column(name = "diez")
+    private int diez;
+
+    @Column(name = "cinco")
+    private int cinco;
+    
+    @Column(name = "uno")
+    private int uno;
+    
+    @Column(name = "total")
+    private int total;
+    
+    @Column(name = "estado")
+    private boolean estado;
+    
+    
+
+    public long getRecepcioncajaId() {
+        return recepcioncajaId;
     }
 
-    public void setRecepcioncaja_id(int recepcioncaja_id) {
-        this.recepcioncaja_id = recepcioncaja_id;
+    public void setRecepcioncajaId(long recepcioncajaId) {
+        this.recepcioncajaId = recepcioncajaId;
     }
 
     public String getResponsable() {
@@ -43,11 +93,11 @@ public class RecepsionModelo {
         this.responsable = responsable;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -147,12 +197,12 @@ public class RecepsionModelo {
         this.total = total;
     }
 
-    public int getCuadre_id_cuadre() {
-        return cuadre_id_cuadre;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setCuadre_id_cuadre(int cuadre_id_cuadre) {
-        this.cuadre_id_cuadre = cuadre_id_cuadre;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
-    
+
 }

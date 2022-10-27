@@ -5,19 +5,61 @@
  */
 package com.bytecode.shop_smart.model;
 
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 /**
  *
  * @author rsaldana
  */
-public class ArticuloModelo {
-    int articuloId, medidaId;
-    String nombre, marca, responsable, medidaString, numeroMedidaId;
+@Entity
+@Table(name = "articulo")
+public class ArticuloModelo implements Serializable {
 
-    public int getArticuloId() {
+    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @Column(name = "articulo_id", unique = true, nullable = false)
+    private long articuloId;
+    
+    @Column(name = "nombre")
+    private String nombre;
+    
+    @Column(name = "marca")
+    private String marca;
+    
+    @ManyToOne
+    @JoinColumn(name = "medida_id_medida")
+    private MedidaModel medidaModel;
+    
+    @Column(name = "responsable")
+    private String responsable;
+    
+    @Column(name = "estado")
+    private boolean estado;
+    
+    @Column(name = "fecha")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
+    
+    
+    
+    
+
+    public long getArticuloId() {
         return articuloId;
     }
 
-    public void setArticuloId(int articuloId) {
+    public void setArticuloId(long articuloId) {
         this.articuloId = articuloId;
     }
 
@@ -37,6 +79,14 @@ public class ArticuloModelo {
         this.marca = marca;
     }
 
+    public MedidaModel getMedidaModel() {
+        return medidaModel;
+    }
+
+    public void setMedidaModel(MedidaModel medidaModel) {
+        this.medidaModel = medidaModel;
+    }
+
     public String getResponsable() {
         return responsable;
     }
@@ -45,29 +95,22 @@ public class ArticuloModelo {
         this.responsable = responsable;
     }
 
-    public int getMedidaId() {
-        return medidaId;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setMedidaId(int medidaId) {
-        this.medidaId = medidaId;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
-    public String getMedidaString() {
-        return medidaString;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setMedidaString(String medidaString) {
-        this.medidaString = medidaString;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
-
-    public String getNumeroMedidaId() {
-        return numeroMedidaId;
-    }
-
-    public void setNumeroMedidaId(String numeroMedidaId) {
-        this.numeroMedidaId = numeroMedidaId;
-    }
+    
     
     
     

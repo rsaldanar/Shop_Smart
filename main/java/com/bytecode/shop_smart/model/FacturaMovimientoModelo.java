@@ -24,8 +24,8 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table(name = "movimiento")
-public class MovimientoModelo implements Serializable{
+@Table(name = "movimiento_salida")
+public class FacturaMovimientoModelo implements Serializable{
     
     
     @Id
@@ -33,23 +33,25 @@ public class MovimientoModelo implements Serializable{
     @Column(name = "movimiento_id", unique = true, nullable = false)
     private long movimientoId;
     
-    @Column(name = "documento_entrada")
-    private String documentoEntrada;
+//    @Column(name = "documento_entrada")
+//    private String documentoEntrada;
     
 //    @ManyToOne
 //    @JoinColumn(name = "almacen_id_almacen")
 //    private AlmacenModelo almacenModelo;
     
-    @ManyToOne
-    @JoinColumn(name = "orden_compra_id_orden_compra")
-    private OrdenCompraModelo ordenCompraModelo;
+//    @ManyToOne
+//    @JoinColumn(name = "orden_compra_id_orden_compra")
+//    private OrdenCompraModelo ordenCompraModelo;
     
 //    @ManyToOne
 //    @JoinColumn(name = "articulo_id_articulo")
 //    private ArticuloModelo articuloModelo;
+    @Column(name = "articulo_id_articulo")
+    private Integer articuloId;
     
-    @Column(name = "precio_compra")
-    private Float precioCompra;
+//    @Column(name = "precio_compra")
+//    private float precioCompra;
     
     @Column(name = "precio_venta_a")
     private Float precioVentaA;
@@ -60,9 +62,9 @@ public class MovimientoModelo implements Serializable{
     @Column(name = "comentario")
     private String comentario;
     
-    @Column(name = "fecha_vencimiento")
-    @Temporal(TemporalType.DATE)
-    private Date fechaVencimiento;
+//    @Column(name = "fecha_vencimiento")
+//    @Temporal(TemporalType.DATE)
+//    private Date fechaVencimiento;
     
     @Column(name = "responsable")
     private String responsable;
@@ -71,16 +73,20 @@ public class MovimientoModelo implements Serializable{
     private boolean estado;
     
     @Column(name = "movimiento_numero")
-    private int movimientoNumero;
-    
-    @Column(name = "articulo_cantidad_entrada")
-    private Float articuloCantidadEntrada;
+    private Integer movimientoNumero;
+//    
+//    @Column(name = "articulo_cantidad_entrada")
+//    private float articuloCantidadEntrada;
     
     @Column(name = "articulo_cantidad_salida")
     private Float articuloCantidadSalida;
     
     @Column(name = "salida_numero")
-    private int salidaNumero;
+    private Integer salidaNumero;
+
+
+
+
 
     public long getMovimientoId() {
         return movimientoId;
@@ -90,28 +96,12 @@ public class MovimientoModelo implements Serializable{
         this.movimientoId = movimientoId;
     }
 
-    public String getDocumentoEntrada() {
-        return documentoEntrada;
+    public Integer getArticuloId() {
+        return articuloId;
     }
 
-    public void setDocumentoEntrada(String documentoEntrada) {
-        this.documentoEntrada = documentoEntrada;
-    }
-
-    public OrdenCompraModelo getOrdenCompraModelo() {
-        return ordenCompraModelo;
-    }
-
-    public void setOrdenCompraModelo(OrdenCompraModelo ordenCompraModelo) {
-        this.ordenCompraModelo = ordenCompraModelo;
-    }
-
-    public Float getPrecioCompra() {
-        return precioCompra;
-    }
-
-    public void setPrecioCompra(Float precioCompra) {
-        this.precioCompra = precioCompra;
+    public void setArticuloId(Integer articuloId) {
+        this.articuloId = articuloId;
     }
 
     public Float getPrecioVentaA() {
@@ -138,14 +128,6 @@ public class MovimientoModelo implements Serializable{
         this.comentario = comentario;
     }
 
-    public Date getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public void setFechaVencimiento(Date fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
-    }
-
     public String getResponsable() {
         return responsable;
     }
@@ -162,20 +144,12 @@ public class MovimientoModelo implements Serializable{
         this.estado = estado;
     }
 
-    public int getMovimientoNumero() {
+    public Integer getMovimientoNumero() {
         return movimientoNumero;
     }
 
-    public void setMovimientoNumero(int movimientoNumero) {
+    public void setMovimientoNumero(Integer movimientoNumero) {
         this.movimientoNumero = movimientoNumero;
-    }
-
-    public Float getArticuloCantidadEntrada() {
-        return articuloCantidadEntrada;
-    }
-
-    public void setArticuloCantidadEntrada(Float articuloCantidadEntrada) {
-        this.articuloCantidadEntrada = articuloCantidadEntrada;
     }
 
     public Float getArticuloCantidadSalida() {
@@ -186,11 +160,11 @@ public class MovimientoModelo implements Serializable{
         this.articuloCantidadSalida = articuloCantidadSalida;
     }
 
-    public int getSalidaNumero() {
+    public Integer getSalidaNumero() {
         return salidaNumero;
     }
 
-    public void setSalidaNumero(int salidaNumero) {
+    public void setSalidaNumero(Integer salidaNumero) {
         this.salidaNumero = salidaNumero;
     }
 }
